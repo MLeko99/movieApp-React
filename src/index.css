@@ -54,54 +54,59 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.calculator-wrapper{
-    width: 600px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.calculator-wrapper {
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
-.calculator-preview{
-width: 100%;
-border: 3px solid white;
-
-height: 85px;
-display: flex;
-justify-content: center;
-align-items: center;
+.calculator-preview {
+  width: 100%;
+  border: 3px solid white;
+  height: 85px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.numbers-wrapper{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    padding: 20px;
-    flex-wrap: wrap;
-}
-
-.number, .operator{
-    border: 3px solid white;
-    padding: 20px;
-    flex-grow: 0;
-    flex-shrink: 0;
-    flex-basis: 20%;
-    margin-bottom: 20px;
-}
-
-.operators-wrapper{
+.numbers-wrapper {
   display: flex;
   justify-content: space-between;
-  width:100%;
+  width: 100%;
+  padding: 20px;
+  flex-wrap: wrap;
 }
 
-.operator{
-width: 90px;
-border: 3px solid white;
-padding: 20px;
-font-weight: 700;
+.number,
+.operator {
+  border: 3px solid white;
+  padding: 20px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 20%;
+  margin-bottom: 20px;
 }
 
-.number:hover, .operator:hover{
+.operators-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+}
+
+.operator {
+  flex-grow: 1;
+  max-width: 90px;
+  border: 3px solid white;
+  padding: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.number:hover,
+.operator:hover {
   cursor: pointer;
 }
