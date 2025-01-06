@@ -1,0 +1,40 @@
+.list-container {
+    padding: 40px 20px;
+    text-align: center;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.list-item {
+    background: var(--secondary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.list-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.4);
+}
+
+.list-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.list-item h3 {
+    margin: 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--accent-color);
+}

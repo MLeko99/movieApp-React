@@ -1,0 +1,26 @@
+.tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.tabs a {
+    background: var(--primary-color);
+    color: var(--text-color);
+    padding: 8px 20px;
+    border-radius: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.tabs a:hover {
+    background: var(--hover-color);
+}
+
+.tabs a.active {
+    background: var(--accent-color);
+    color: var(--secondary-color);
+}
