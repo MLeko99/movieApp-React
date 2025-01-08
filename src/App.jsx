@@ -8,6 +8,7 @@ import {
 import Home from "./pages/Home";
 import MovieDetail from "./pages/MovieDetail";
 import TVShowDetail from "./pages/TVShowDetail";
+import Header from "./components/Header";
 import "./index.css";
 
 const App = () => (

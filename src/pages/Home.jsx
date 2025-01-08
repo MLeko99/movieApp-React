@@ -34,18 +34,8 @@ const Home = () => {
         initialQuery={searchQuery}
       />
       <div className="tabs">
-        <button
-          className={activeTab === "movies" ? "active" : ""}
-          onClick={() => handleTabChange("movies")}
-        >
-          🎬 Filmovi
-        </button>
-        <button
-          className={activeTab === "tv" ? "active" : ""}
-          onClick={() => handleTabChange("tv")}
-        >
-          📺 Serije
-        </button>
+        <button onClick={() => handleTabChange("movies")}>🎬 Filmovi</button>
+        <button onClick={() => handleTabChange("tv")}>📺 Serije</button>
       </div>
       {activeTab === "movies" ? (
         <MovieList searchQuery={searchQuery} />

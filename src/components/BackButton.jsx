@@ -7,7 +7,7 @@ const BackButton = () => {
 
   return (
     <button className="back-button" onClick={() => navigate(-1)}>
-      ⬅️ Natrag
+      ⬅Natrag
     </button>
   );
 };
