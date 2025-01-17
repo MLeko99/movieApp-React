@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { fetchTopTVShows, searchContent } from "../api";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Loader from "./Loader";
 import "../styles/TVShowList.css";
 
-const TVShowList = ({ searchQuery }) => {
+const TVShowList = () => {
+  const searchQuery = useSelector((state) => state.app.searchQuery);
   const [tvShows, setTVShows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const location = useLocation();
 
   useEffect(() => {
     setLoading(true);
@@ -43,7 +44,7 @@ const TVShowList = ({ searchQuery }) => {
           <Link
             to={`/tv/${show.id}`}
             state={{
-              from: location.pathname,
+              from: "/tv",
               search: searchQuery,
               tab: "tv",
             }}

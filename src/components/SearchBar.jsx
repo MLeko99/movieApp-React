@@ -5,7 +5,6 @@ import "../styles/SearchBar.css";
 const SearchBar = ({ onSearch, initialQuery }) => {
   const [input, setInput] = useState(initialQuery || "");
 
-  // Debounce funkcija koja poziva onSearch s odgodom
   const handleChange = useCallback(
     debounce((value) => {
       onSearch(value);

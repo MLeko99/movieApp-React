@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { fetchTopMovies, searchContent } from "../api";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Loader from "./Loader";
 import "../styles/MovieList.css";
 
-const MovieList = ({ searchQuery }) => {
+const MovieList = () => {
+  const searchQuery = useSelector((state) => state.app.searchQuery);
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const location = useLocation();
 
   useEffect(() => {
     setLoading(true);
@@ -43,7 +44,7 @@ const MovieList = ({ searchQuery }) => {
           <Link
             to={`/movie/${movie.id}`}
             state={{
-              from: location.pathname,
+              from: "/movies",
               search: searchQuery,
               tab: "movies",
             }}
