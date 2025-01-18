@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_KEY = "79fe72909ccdb31f0a53aa365e9daf38";
+const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://api.themoviedb.org/3";
 
 // Dohvat TOP 10 filmova
