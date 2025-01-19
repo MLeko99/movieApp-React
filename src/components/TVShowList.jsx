@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchTopTVShows, searchContent } from "../api";
+import { fetchTopTVShows, searchContent } from "../../api";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Loader from "./Loader";

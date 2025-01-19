@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-import debounce from "../utils/debounce";
+import debounce from "../../debounce";
 import "../styles/SearchBar.css";
 
 const SearchBar = ({ onSearch, initialQuery }) => {
