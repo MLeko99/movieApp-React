@@ -1,7 +1,10 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setActiveTab } from "../store/appSlice";
+import { setSearchQuery, setActiveTab } from "../store/appSlice";
+import SearchBar from "../components/SearchBar";
+import MovieList from "../components/MovieList";
+import TVShowList from "../components/TVShowList";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -18,6 +21,10 @@ const Home = () => {
 
   return (
     <div>
+      <SearchBar
+        onSearch={(query) => dispatch(setSearchQuery(query))}
+        initialQuery={searchQuery}
+      />
       <div className="tabs">
         <button
           className={activeTab === "movies" ? "active" : ""}
@@ -32,6 +39,11 @@ const Home = () => {
           📺 Serije
         </button>
       </div>
+      {activeTab === "movies" ? (
+        <MovieList searchQuery={searchQuery} />
+      ) : (
+        <TVShowList searchQuery={searchQuery} />
+      )}
     </div>
   );
 };
