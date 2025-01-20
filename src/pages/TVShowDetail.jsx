@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { fetchDetails } from "../api";
+import { fetchDetails } from "../../api";
 import Loader from "../components/Loader";
 import BackButton from "../components/BackButton";
 import "../styles/DetailView.css";
