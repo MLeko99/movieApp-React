@@ -1,105 +1,56 @@
-import "./index.css";
-import "./App.css";
 import { useState } from "react";
+import Button from "./components/Button";
+import Display from "./components/Display";
 
-function App() {
-  const [num1, setNum1] = useState(null);
-  const [num2, setNum2] = useState(null);
-  const [operator, setOperator] = useState(null);
-  const [result, setResult] = useState(null);
+const Calculator = () => {
+  const [input, setInput] = useState("");
 
-  const handleClickNumber = (number) => {
-    if (num1 === null) {
-      setNum1(number);
-    } else {
-      setNum2(number);
-    }
+  const handleClick = (value) => {
+    if (isOperator(value) && isOperator(input.slice(-1))) return;
+    setInput((prev) => prev + value);
   };
 
   const calculate = () => {
-    if (num1 === null || num2 === null || !operator) return;
-
-    if (operator === "+") {
-      setResult(num1 + num2);
-    } else if (operator === "-") {
-      setResult(num1 - num2);
-    } else if (operator === "*") {
-      setResult(num1 * num2);
-    } else if (operator === "/") {
-      setResult(num1 / num2);
+    try {
+      const result = eval(input);
+      setInput(String(result));
+    } catch {
+      setInput("Error");
     }
   };
 
-  const reset = () => {
-    setNum1(null);
-    setNum2(null);
-    setOperator(null);
-    setResult(null);
-  };
+  const reset = () => setInput("");
+
+  const isOperator = (char) => ["+", "-", "*", "/"].includes(char);
 
   return (
-    <>
-      <div className="calculator-wrapper">
-        <div className="calculator-preview">
-          {num1}
-          {operator}
-          {num2} {result ? "=" + result : ""}
-        </div>
-        <div className="numbers-wrapper">
-          <div className="number" onClick={() => handleClickNumber(1)}>
-            1
-          </div>
-          <div className="number" onClick={() => handleClickNumber(2)}>
-            2
-          </div>
-          <div className="number" onClick={() => handleClickNumber(3)}>
-            3
-          </div>
-          <div className="number" onClick={() => handleClickNumber(4)}>
-            4
-          </div>
-          <div className="number" onClick={() => handleClickNumber(5)}>
-            5
-          </div>
-          <div className="number" onClick={() => handleClickNumber(6)}>
-            6
-          </div>
-          <div className="number" onClick={() => handleClickNumber(7)}>
-            7
-          </div>
-          <div className="number" onClick={() => handleClickNumber(8)}>
-            8
-          </div>
-          <div className="number" onClick={() => handleClickNumber(9)}>
-            9
-          </div>
-          <div className="number" onClick={() => reset}>
-            C
-          </div>
-          <div className="number" onClick={() => handleClickNumber(0)}>
-            0
-          </div>
-          <div className="number" onClick={() => calculate()}>
-            =
-          </div>
-        </div>
-        <div className="operators-wrapper">
-          <div className="operator" onClick={() => setOperator("+")}>
-            +
-          </div>
-          <div className="operator" onClick={() => setOperator("-")}>
-            -
-          </div>
-          <div className="operator" onClick={() => setOperator("*")}>
-            *
-          </div>
-          <div className="operator" onClick={() => setOperator("/")}>
-            /
-          </div>
-        </div>
-      </div>
-    </>
-  );
-}
+    <div className="calculator-wrapper">
+      <Display value={input} />
 
-export default App;
+      <div className="numbers-wrapper">
+        {["1", "2", "3", "4", "5", "6", "7", "8", "9"].map((num) => (
+          <Button key={num} value={num} onClick={handleClick} />
+        ))}
+      </div>
+
+      <div className="special-row">
+        <Button value="C" onClick={reset} />
+        <Button value="=" onClick={calculate} />
+        <Button value="0" onClick={handleClick} />
+      </div>
+
+      <div className="operator-row">
+        {["+", "-", "*", "/"].map((op) => (
+          <Button
+            key={op}
+            value={op}
+            onClick={handleClick}
+            className="operator"
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
+export default Calculator;
