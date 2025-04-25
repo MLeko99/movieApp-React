@@ -1,56 +1,31 @@
-import { useState } from "react";
-import Button from "./components/Button";
-import Display from "./components/Display";
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./store/store";
+import Home from "./pages/Home";
+import MovieDetail from "./pages/MovieDetail";
+import TVShowDetail from "./pages/TVShowDetail";
+import Header from "./components/Header";
+import "./index.css";
 
-const Calculator = () => {
-  const [input, setInput] = useState("");
+const App = () => (
+  <Provider store={store}>
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Navigate to="/tv" />} />
+        <Route path="/movies" element={<Home activeTab="movies" />} />
+        <Route path="/tv" element={<Home activeTab="tv" />} />
+        <Route path="/movie/:id" element={<MovieDetail />} />
+        <Route path="/tv/:id" element={<TVShowDetail />} />
+      </Routes>
+    </Router>
+  </Provider>
+);
 
-  const handleClick = (value) => {
-    if (isOperator(value) && isOperator(input.slice(-1))) return;
-    setInput((prev) => prev + value);
-  };
-
-  const calculate = () => {
-    try {
-      const result = eval(input);
-      setInput(String(result));
-    } catch {
-      setInput("Error");
-    }
-  };
-
-  const reset = () => setInput("");
-
-  const isOperator = (char) => ["+", "-", "*", "/"].includes(char);
-
-  return (
-    <div className="calculator-wrapper">
-      <Display value={input} />
-
-      <div className="numbers-wrapper">
-        {["1", "2", "3", "4", "5", "6", "7", "8", "9"].map((num) => (
-          <Button key={num} value={num} onClick={handleClick} />
-        ))}
-      </div>
-
-      <div className="special-row">
-        <Button value="C" onClick={reset} />
-        <Button value="=" onClick={calculate} />
-        <Button value="0" onClick={handleClick} />
-      </div>
-
-      <div className="operator-row">
-        {["+", "-", "*", "/"].map((op) => (
-          <Button
-            key={op}
-            value={op}
-            onClick={handleClick}
-            className="operator"
-          />
-        ))}
-      </div>
-    </div>
-  );
-};
-
-export default Calculator;
+export default App;
